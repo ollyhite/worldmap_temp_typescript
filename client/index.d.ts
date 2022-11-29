@@ -10,3 +10,5 @@ export interface MapPoint {
   lon: number;
   temp: number;
 }
+
+export type TempUnit = "c" | "f";

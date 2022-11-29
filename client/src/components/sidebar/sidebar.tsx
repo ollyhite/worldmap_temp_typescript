@@ -11,12 +11,12 @@ import { FaTemperatureHigh } from "react-icons/fa";
 import logo from "../images/weather_logo.svg";
 import { makeTest, updateFile, makeRequest } from "../../utils/data-utils";
 import { TempContext } from "../../utils/TempContext";
-import { MapPoint } from "../../..";
+import { MapPoint, TempUnit } from "../../..";
 
 export const Sidebar: FC = (): ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
   const [file, setFile] = useState("");
-  const { setPoints } = useContext(TempContext);
+  const { setPoints, unit, setUnit } = useContext(TempContext);
 
   // //test api to backend
   // const testApi = (e: SyntheticEvent) => {
@@ -73,6 +73,15 @@ export const Sidebar: FC = (): ReactElement => {
       .then(async (res) => setPoints((await res.json()) as any as MapPoint[]))
       .catch((err) => console.trace(err));
   };
+
+  const changeTem = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log("change");
+    const unitStateMachine: Record<TempUnit, TempUnit> = { c: "f", f: "c" };
+    // unitStateMachine['c'] === .c
+    setUnit(unitStateMachine[unit]);
+  };
+
   console.log(file);
 
   return (
@@ -99,9 +108,9 @@ export const Sidebar: FC = (): ReactElement => {
           <h1>Upload File</h1>
         </button>
       </form>
-      <button className="list">
+      <button className="list" onClick={changeTem} disabled={!file.length}>
         <FaTemperatureHigh />
-        <h1>Change C/F</h1>
+        <h1>Change {unit.toUpperCase()}</h1>
       </button>
     </div>
   );

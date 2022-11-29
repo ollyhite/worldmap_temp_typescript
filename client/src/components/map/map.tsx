@@ -4,6 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { MdLocationOn } from "react-icons/md";
 import Map, { Marker } from "react-map-gl";
 import { TempContext } from "../../utils/TempContext";
+import { TempUnit } from "../../..";
 
 mapboxgl.accessToken = process.env?.REACT_APP_MAP_BOX_TOKEN ?? "no_token";
 
@@ -13,7 +14,7 @@ export const MapBox: FC = (): ReactElement => {
     latitude: 0,
     zoom: 0,
   });
-  const { points: rawPoints } = useContext(TempContext);
+  const { points: rawPoints, unit } = useContext(TempContext);
 
   const cap = (val: number) => {
     let res = val;
@@ -47,6 +48,13 @@ export const MapBox: FC = (): ReactElement => {
         }),
   };
 
+  const showByUnit = (temp: number, unit: TempUnit) => {
+    if (unit === "f") {
+      return temp;
+    }
+    return (((Number(temp) - 32) * 5) / 9).toFixed(2);
+  };
+
   return (
     <Map
       {...mapProps}
@@ -63,7 +71,7 @@ export const MapBox: FC = (): ReactElement => {
           anchor="bottom"
         >
           <MdLocationOn />
-          {temp}
+          {showByUnit(temp, unit)} {unit.toUpperCase()}
         </Marker>
       ))}
     </Map>

@@ -5,7 +5,8 @@ import { TempContext } from "./utils/TempContext";
 
 const App: FC = (): ReactElement => {
   const [points, setPoints] = useState<MapPoint[]>([]);
-  const store = { points, setPoints };
+  const [unit, setUnit] = useState<"c" | "f">("f");
+  const store = { points, setPoints, unit, setUnit };
 
   return (
     <TempContext.Provider value={store}>

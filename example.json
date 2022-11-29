@@ -3,18 +3,18 @@
     "city": "Taipei",
     "lat": "121.5811",
     "lon": "25.0235",
-    "temp": "28.0"
+    "temp": "84.2"
   },
   {
     "city": "Taichung",
     "lat": "120.6264",
     "lon": "24.1313",
-    "temp": "29.0"
+    "temp": "86.0"
   },
   {
-    "city": "Taipei",
+    "city": "Kaohsiung",
     "lat": "120.3107",
     "lon": "22.6147",
-    "temp": "32.0"
+    "temp": "89.6"
   }
 ]

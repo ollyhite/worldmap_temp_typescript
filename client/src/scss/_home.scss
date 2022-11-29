@@ -51,9 +51,11 @@ body {
       background-color: transparent;
       border: none;
     }
-    // input {
-    //   display: none;
-    // }
+    input {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
   .right {
     width: calc(100% - 250px);
