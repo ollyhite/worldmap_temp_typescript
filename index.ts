@@ -14,6 +14,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("<h1>Hello World From the Typescript Server!</h1>");
 });
 
+app.get("/test", (req, res) => res.send("working"));
+
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {

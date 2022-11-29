@@ -3,8 +3,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import React, { ReactElement } from "react";
 import Map from "react-map-gl";
 
-mapboxgl.accessToken =
-  "pk.eyJ1Ijoib2xseWhpdGUiLCJhIjoiY2xhcmR1bGcyMDRxMjNvbXMxY3lnZ2xqOSJ9.Y3YUFKRACl5_8-jIo5LRoQ";
+mapboxgl.accessToken = process.env?.REACT_APP_MAP_BOX_TOKEN ?? "no_token";
 
 export const MapBox = (): ReactElement => {
   const [viewState, setViewState] = React.useState({
