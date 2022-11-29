@@ -1,0 +1,8 @@
+version: "3.9"
+# will auto build a container called web
+services:
+  web:
+    build: .
+    image: web_image
+    ports:
+      - "8000:8000"

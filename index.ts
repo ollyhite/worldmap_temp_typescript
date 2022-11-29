@@ -17,9 +17,15 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("<h1>Hello World From the Typescript Server!</h1>");
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/"));
 });
+
+// app.get("/", (req: Request, res: Response) => {
+//   res.send("<h1>Hello World From the Typescript Server!</h1>");
+// });
 
 app.get("/test", (req, res) => res.send("working"));
 
