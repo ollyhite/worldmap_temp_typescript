@@ -17,3 +17,13 @@ export const makeTest = ({
     body,
   });
 };
+
+export const updateFile = async <T>(
+  data: FormData,
+  url: string = "upload-file"
+): Promise<T> => {
+  return await fetch(makeUrl("///" + url), {
+    method: "Post",
+    body: data,
+  }).then((res) => res.json());
+};
