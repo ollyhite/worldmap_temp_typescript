@@ -38,6 +38,20 @@ This is a website build with React.js/Typescript/Express.js/Docker-compose. It's
 3. provide a correct token in .env for map_box_token, consult map box documentation for more information on how to get the token
 4. run `npm start` from client root
 
+- Docker
+
+this projects supports docker through docker compose, see package.json for added docker scripts
+
+1. run `npm run dc:up` to start the command using docker
+2. visit http://localhost:8000
+
+- npm scripts for docker compose
+  - `dc:up` -- start the container (builds the container if it is not present)
+  - `dc:stop` -- stop the container
+  - `dc:up:build` -- rebuild and start the container
+  - `dc:sh` -- start the container with a shell attached to execute commands in the container
+  - `dc:ps` -- list containers
+
 ## Usage
 
 ![screenshot](./client/src/components/images/worldmap_temp_screenshot.png)
