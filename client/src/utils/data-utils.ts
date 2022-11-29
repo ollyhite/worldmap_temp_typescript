@@ -27,3 +27,16 @@ export const updateFile = async <T>(
     body: data,
   }).then((res) => res.json());
 };
+
+export const makeRequest = ({
+  url = "",
+  headers = {},
+  body = null,
+  method = "get",
+}) => {
+  return fetch(makeUrl(url), {
+    method,
+    headers,
+    body,
+  });
+};

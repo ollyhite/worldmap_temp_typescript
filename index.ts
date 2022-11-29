@@ -12,10 +12,10 @@ dotenv.config();
 
 const app: Express = express();
 
-app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+// app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.send("<h1>Hello World From the Typescript Server!</h1>");
@@ -24,13 +24,31 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/test", (req, res) => res.send("working"));
 
 app.post("/upload-file", upload.array(), (req, res) => {
-  console.log("upload-file route");
   try {
     // const fileContents = JSON.parse(req.files.exampleData.data.toString('utf8'));
     const { file = [] } = req.body;
     const fileJson = JSON.parse(file);
     dataInMemory.push(...fileJson);
     return res.json({ contents: fileJson.length });
+  } catch (error) {
+    console.trace(error);
+    res.status(500).send(error);
+  }
+});
+
+app.get("/points", (req, res) => {
+  try {
+    return res.json(dataInMemory);
+  } catch (error) {
+    console.trace(error);
+    res.status(500).send(error);
+  }
+});
+
+app.get("/clear-points", (req, res) => {
+  try {
+    const clearDataInMemory: {}[] = [];
+    return res.json(clearDataInMemory);
   } catch (error) {
     console.trace(error);
     res.status(500).send(error);
