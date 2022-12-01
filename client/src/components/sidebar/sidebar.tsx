@@ -103,12 +103,13 @@ export const Sidebar: FC = (): ReactElement => {
           <img src={logo} alt="Logo Images" />
           <h1>Temp Map</h1>
         </div>
-
-        <input
-          type="file"
-          onChange={handleFileInputChange}
-          // style={{ display: "none" }}
-        />
+        <div className="input-frame">
+          <input
+            type="file"
+            onChange={handleFileInputChange}
+            // style={{ display: "none" }}
+          />
+        </div>
         {/* if have data, btn disable to clear */}
         <button onClick={resetForm} className="list" disabled={!file.length}>
           <ImCancelCircle />

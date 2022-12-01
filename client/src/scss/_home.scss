@@ -52,11 +52,7 @@ body {
           color: black;
         }
       }
-      &:hover {
-        background-color: #5f6c68;
-        cursor: pointer;
-        color: white;
-      }
+
       svg {
         font-size: 1.5rem;
         margin-right: 0.5rem;
@@ -73,6 +69,13 @@ body {
       }
     }
   }
+  .input-frame {
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    margin: 0.5rem 0;
+  }
+
   .right {
     width: calc(100% - 250px);
     height: 100%;
