@@ -5,18 +5,25 @@ import React, {
   SyntheticEvent,
   useState,
   useContext,
+  useEffect,
 } from "react";
 import { ImFolderUpload, ImCancelCircle } from "react-icons/im";
 import { FaTemperatureHigh } from "react-icons/fa";
 import logo from "../images/weather_logo.svg";
-import { makeTest, updateFile, makeRequest } from "../../utils/data-utils";
+import {
+  makeTest,
+  updateFile,
+  makeRequest,
+  makeRequestJson,
+} from "../../utils/data-utils";
 import { TempContext } from "../../utils/TempContext";
 import { MapPoint, TempUnit } from "../../..";
 
 export const Sidebar: FC = (): ReactElement => {
   const formRef = useRef<HTMLFormElement>(null);
   const [file, setFile] = useState("");
-  const { setPoints, unit, setUnit } = useContext(TempContext);
+  const [isSpinnerVisible, showSpinner] = useState(false);
+  const { setPoints, unit, setUnit, zoom, setZoom } = useContext(TempContext);
 
   // //test api to backend
   // const testApi = (e: SyntheticEvent) => {
@@ -50,8 +57,9 @@ export const Sidebar: FC = (): ReactElement => {
 
     const data = new FormData();
     data.append("file", file);
-    updateFile(data);
-    loadPoints();
+    // showSpinner(true);
+    updateFile(data).then(() => loadPoints());
+    // .finally(() => showSpinner(false));
   };
 
   const resetForm = () => {
@@ -62,8 +70,9 @@ export const Sidebar: FC = (): ReactElement => {
 
   //locat point api
   const loadPoints = () => {
-    makeRequest({ url: "/points" })
-      .then(async (res) => setPoints((await res.json()) as any as MapPoint[]))
+    // .then(async (res) => setPoints((await res.json()) as any as MapPoint[]))
+    makeRequestJson<MapPoint[]>({ url: "/points" })
+      .then((res) => setPoints(res))
       .catch((err) => console.trace(err));
   };
 
@@ -83,6 +92,8 @@ export const Sidebar: FC = (): ReactElement => {
   };
 
   console.log(file);
+
+  useEffect(() => loadPoints(), []);
 
   return (
     <div className="meau">
@@ -112,6 +123,14 @@ export const Sidebar: FC = (): ReactElement => {
         <FaTemperatureHigh />
         <h1>Change {unit.toUpperCase()}</h1>
       </button>
+
+      <input
+        value={zoom}
+        type="number"
+        onChange={(e) => setZoom(e.target.value as any as number)}
+      ></input>
+
+      {/* {isSpinnerVisible && <div>Loading...</div>} */}
     </div>
   );
 };

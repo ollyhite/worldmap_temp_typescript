@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 const multer = require("multer");
 const upload = multer(); // v1.0.5/ for parsing multipart/form-data
 
-const dataInMemory: {}[] = [];
+let dataInMemory: {}[] = [];
 
 dotenv.config();
 
@@ -53,8 +53,8 @@ app.get("/points", (req, res) => {
 
 app.get("/clear-points", (req, res) => {
   try {
-    const clearDataInMemory: {}[] = [];
-    return res.json(clearDataInMemory);
+    dataInMemory = []; //set dataInMemory = empty array
+    return res.json(dataInMemory);
   } catch (error) {
     console.trace(error);
     res.status(500).send(error);

@@ -12,40 +12,23 @@ export const MapBox: FC = (): ReactElement => {
   const [viewState, setViewState] = React.useState({
     longitude: 0,
     latitude: 0,
-    zoom: 0,
   });
-  const { points: rawPoints, unit } = useContext(TempContext);
-
-  const cap = (val: number) => {
-    let res = val;
-    if (val >= 90) {
-      res = 89;
-    } else if (val <= -90) {
-      res = -89;
-    }
-    console.log({ res, val });
-    return res;
-  };
+  const { points: rawPoints, unit, zoom } = useContext(TempContext);
 
   const points = rawPoints.map((point) => {
-    //the raw data is flipped between lat and lon
     return {
-      lat: cap(Number(point.lon)),
-      lon: Number(point.lat),
+      lat: Number(point.lat),
+      lon: Number(point.lon),
       temp: Number(point.temp),
     };
   });
-
   const [centerPoint] = points;
 
   const mapProps = {
-    ...viewState,
-    ...(!centerPoint
-      ? {}
-      : {
-          longitude: Number(centerPoint.lon),
-          latitude: Number(centerPoint.lat),
-        }),
+    longitude: Number(centerPoint?.lon ?? viewState.longitude),
+    latitude: Number(centerPoint?.lat ?? viewState.latitude),
+    // zoom:zoom
+    zoom,
   };
 
   const showByUnit = (temp: number, unit: TempUnit) => {

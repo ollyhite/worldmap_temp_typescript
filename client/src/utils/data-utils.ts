@@ -40,3 +40,11 @@ export const makeRequest = ({
     body,
   });
 };
+
+export const makeRequestJson = <T>({
+  url = "",
+  headers = {},
+  body = null,
+  method = "get",
+}) =>
+  makeRequest({ url, headers, body, method }).then((res) => res.json() as T);
