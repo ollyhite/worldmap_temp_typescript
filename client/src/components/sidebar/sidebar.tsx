@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { ImFolderUpload, ImCancelCircle } from "react-icons/im";
 import { FaTemperatureHigh } from "react-icons/fa";
+import { FiZoomIn } from "react-icons/fi";
 import logo from "../images/weather_logo.svg";
 import {
   makeTest,
@@ -124,11 +125,15 @@ export const Sidebar: FC = (): ReactElement => {
         <h1>Change {unit.toUpperCase()}</h1>
       </button>
 
-      <input
-        value={zoom}
-        type="number"
-        onChange={(e) => setZoom(e.target.value as any as number)}
-      ></input>
+      <div className="list zoom-input">
+        <FiZoomIn />
+        <input
+          value={zoom}
+          type="number"
+          onChange={(e) => setZoom(e.target.value as any as number)}
+          min="0"
+        ></input>
+      </div>
 
       {/* {isSpinnerVisible && <div>Loading...</div>} */}
     </div>

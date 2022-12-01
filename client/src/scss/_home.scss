@@ -36,6 +36,22 @@ body {
       display: flex;
       align-items: center;
       padding-left: 2rem;
+      &.zoom-input {
+        height: 68px;
+        input {
+          width: 65%;
+          height: 50%;
+          box-sizing: border-box;
+          border: 3px solid black;
+          outline: none;
+          background-color: transparent;
+        }
+        &:hover {
+          background-color: #b6c5bd;
+          cursor: pointer;
+          color: black;
+        }
+      }
       &:hover {
         background-color: #5f6c68;
         cursor: pointer;
