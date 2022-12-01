@@ -46,11 +46,38 @@ this projects supports docker through docker compose, see package.json for added
 2. visit http://localhost:8000
 
 - npm scripts for docker compose
+
   - `dc:up` -- start the container (builds the container if it is not present)
   - `dc:stop` -- stop the container
   - `dc:up:build` -- rebuild and start the container
   - `dc:sh` -- start the container with a shell attached to execute commands in the container
   - `dc:ps` -- list containers
+
+#### Uplaod JSON File Example
+
+```
+[
+  {
+    "city": "Fort Collins",
+    "lat": "40.585258",
+    "lon": "-105.084419",
+    "temp": "84.2"
+  },
+  {
+    "city": "Danver",
+    "lat": "39.742043",
+    "lon": "-104.991531",
+    "temp": "86.0"
+  },
+  {
+    "city": "Loveland",
+    "lat": "40.398857",
+    "lon": "-105.052643",
+    "temp": "89.6"
+  }
+]
+
+```
 
 ## Usage
 
