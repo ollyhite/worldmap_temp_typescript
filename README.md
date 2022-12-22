@@ -26,17 +26,12 @@ This is a website build with React.js/Typescript/Express.js/Docker-compose. It's
 - git clone with my repo link (can copy Installation section's first line)
 - cd in the `cd worldmap_temp_typescript` file
 
-- server side
+- install node_modules and run the dev
 
-1. run `npm i` from root to install dependencies
-2. run `npm run dev` from project to start server
-
-- client side
-
-1. copy .env.example to .env
-2. run `npm i` from client root to install dependencies
-3. provide a correct token in .env for map_box_token, consult map box documentation for more information on how to get the token
-4. run `npm start` from client root
+1. run `npm run install` from root and client to install dependencies
+2. rename .env.example to .env and add a correct token in .env for REACT_APP_MAP_BOX_TOKEN
+   (consult map box documentation for more information on how to get the token)
+3. run `npm run start:dev` to run the dev (server and client side)
 
 - Docker
 
